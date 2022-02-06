@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 public class Stopwatch implements ActionListener {
 	private final int SCREEN_WIDTH = 270; 
 	private final int SCREEN_HEIGHT = 170;
-	private final int TIMER_DELAY = 10;
+	private final int TIMER_DELAY = 100;
 	
 	private boolean running;  //if the timer is on or not
 	private long elapsedTimeMillis; // total elapsed time in milliseconds
@@ -46,7 +46,7 @@ public class Stopwatch implements ActionListener {
 		
 		//setting up time display label
 		timeLabel = new JLabel();
-		timeLabel.setText("00:00:00:00");
+		timeLabel.setText("00:00:00:0");
 		timeLabel.setBounds(0 + xMargin, 0 + yMargin, 200, 50);
 		timeLabel.setFont(font);
 		timeLabel.setBorder(BorderFactory.createBevelBorder(1));
@@ -97,7 +97,7 @@ public class Stopwatch implements ActionListener {
 	 */
 	public void reset(ActionEvent e) {
 		timer.stop();
-		timeLabel.setText("00:00:00:00");
+		timeLabel.setText("00:00:00:0");
 		elapsedTimeMillis = 0; 
 		running = false;
 		startStopButton.setText("Start");
@@ -115,9 +115,9 @@ public class Stopwatch implements ActionListener {
 		int hours = (int)(elapsedTimeMillis / 3600000);
 		int minutes = (int)((elapsedTimeMillis / 60000) % 60);
 		int seconds = (int)((elapsedTimeMillis / 1000) % 60);
-		int milliseconds = (int)(elapsedTimeMillis % 1000)/10;
+		int milliseconds = (int)(elapsedTimeMillis % 1000)/100;
 
 		//displaying elapsed time
-		timeLabel.setText(String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, milliseconds));
+		timeLabel.setText(String.format("%02d:%02d:%02d:%d", hours, minutes, seconds, milliseconds));
 	}
 }
